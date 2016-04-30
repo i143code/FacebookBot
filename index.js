@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
             if( text ==='ashish'){
-            	sendGenericCrime(sender)
+            	sendGenericCrime(sender);
             	continue
 
             }
