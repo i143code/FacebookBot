@@ -53,6 +53,10 @@ app.post('/webhook/', function (req, res) {
 
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
+
+        if()
+
+
 		if (event.postback) {
 			text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -63,6 +67,28 @@ app.post('/webhook/', function (req, res) {
 })
 
 var token = "EAAIRleKKOOcBAE3shUSPZCnIsoWWAuIJCthHogIEcn5EkZB1GZAumukabN6hWHYUTUygXu9Rzv2ZCNjMcBanZBmrnnwyZChPUJJSchAdV4IZBRBPlLGCu2AbXe7lS8LmDvKUHZAIdfWJRp3IeQDA1qjJCo1YJaJBCH5SHIV40uAwLAZDZD"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //most dangerous citt
 function sendTextMessage(sender, text) {
 	messageData = {
