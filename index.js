@@ -42,6 +42,12 @@ app.post('/webhook/', function (req, res) {
 
             }
 
+            if( text ==='Most dangerous place '){
+            	sendGenericDangerous(sender);
+            	continue
+
+            }
+
 
 
 
@@ -57,6 +63,56 @@ app.post('/webhook/', function (req, res) {
 })
 
 var token = "EAAIRleKKOOcBAE3shUSPZCnIsoWWAuIJCthHogIEcn5EkZB1GZAumukabN6hWHYUTUygXu9Rzv2ZCNjMcBanZBmrnnwyZChPUJJSchAdV4IZBRBPlLGCu2AbXe7lS8LmDvKUHZAIdfWJRp3IeQDA1qjJCo1YJaJBCH5SHIV40uAwLAZDZD"
+//most dangerous city
+
+function sendGenericDangerous(sender) {
+	messageData = {
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [{
+					"title": "Murder",
+					"subtitle": "Element #1 of an hscroll",
+					"image_url": "http://gdurl.com/9Rfs",
+					"buttons": [{
+						"type": "web_url",
+						"url": "https://www.messenger.com",
+						"title": "web url"
+					}, {
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for first element in a generic bubble",
+					}],
+				}, {
+					"title": "Second card",
+					"subtitle": "Element #2 of an hscroll",
+					"image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+					"buttons": [{
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for second element in a generic bubble",
+					}],
+				}]
+			}
+		}
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+
 
 function sendTextMessage(sender, text) {
 	messageData = {
